@@ -1,0 +1,823 @@
+[
+  {
+    "id": "00a21c14-82c4-4471-900c-09af9a531bee",
+    "appId": "d73d198e-62a2-46d4-93c8-0ac820401773",
+    "displayName": "operoo",
+    "signInAudience": "AzureADMyOrg",
+    "createdDateTime": "2026-04-24T11:37:16Z",
+    "passwordCredentials": [
+      {
+        "customKeyIdentifier": null,
+        "displayName": "operoo",
+        "endDateTime": "2026-10-21T11:39:25.776Z",
+        "hint": "FaS",
+        "keyId": "c1a809bd-ad44-49ae-908f-9903e755aa71",
+        "secretText": null,
+        "startDateTime": "2026-04-24T11:39:25.776Z"
+      }
+    ],
+    "keyCredentials": [],
+    "requiredResourceAccess": [
+      {
+        "resourceAppId": "00000003-0000-0000-c000-000000000000",
+        "resourceAccess": [
+          {
+            "id": "e1fe6dd8-ba31-4d61-89e7-88639da4683d",
+            "type": "Scope"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "12c177bc-5634-48f4-807b-0985bcd94787",
+    "appId": "1083355d-ab83-4ba2-b81b-4ba2025873fb",
+    "displayName": "PowerPlatformGraphConnector",
+    "signInAudience": "AzureADMultipleOrgs",
+    "createdDateTime": "2025-10-23T13:33:40Z",
+    "passwordCredentials": [
+      {
+        "customKeyIdentifier": null,
+        "displayName": "secret",
+        "endDateTime": "2027-03-21T16:34:28.845Z",
+        "hint": "GAh",
+        "keyId": "bf5159ef-2824-4e26-9b95-dbe96625a8f6",
+        "secretText": null,
+        "startDateTime": "2026-09-22T15:34:28.845Z"
+      },
+      {
+        "customKeyIdentifier": null,
+        "displayName": "wda",
+        "endDateTime": "2027-01-31T12:26:58.805Z",
+        "hint": "eBY",
+        "keyId": "9e8184db-f376-4db3-b939-f3108059aff7",
+        "secretText": null,
+        "startDateTime": "2026-08-04T11:26:58.805Z"
+      },
+      {
+        "customKeyIdentifier": null,
+        "displayName": "wdadad",
+        "endDateTime": "2027-01-31T11:11:14.676Z",
+        "hint": "EkW",
+        "keyId": "de7b614c-4534-4c99-b6ea-3b18942b74c7",
+        "secretText": null,
+        "startDateTime": "2026-08-04T10:11:14.676Z"
+      }
+    ],
+    "keyCredentials": [],
+    "requiredResourceAccess": [
+      {
+        "resourceAppId": "00000003-0000-0000-c000-000000000000",
+        "resourceAccess": [
+          {
+            "id": "b27a61ec-b99c-4d6a-b126-c4375d08ae30",
+            "type": "Scope"
+          },
+          {
+            "id": "951183d1-1a61-466f-a6d1-1fde911bfd95",
+            "type": "Scope"
+          },
+          {
+            "id": "280b3b69-0437-44b1-bc20-3b2fca1ee3e9",
+            "type": "Scope"
+          },
+          {
+            "id": "4edf5f54-4666-44af-9de9-0144fb4b6e8c",
+            "type": "Scope"
+          },
+          {
+            "id": "3404d2bf-2b13-457e-a330-c24615765193",
+            "type": "Scope"
+          },
+          {
+            "id": "44642bfe-8385-4adc-8fc6-fe3cb2c375c3",
+            "type": "Scope"
+          },
+          {
+            "id": "a154be20-db9c-4678-8ab7-66f6cc099a59",
+            "type": "Scope"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "48e922eb-52ba-42ea-9ffe-40d36dca89a6",
+    "appId": "f97c4d51-1edb-479c-9218-b27d39d3fb52",
+    "displayName": "M365-MessageCenter-API",
+    "signInAudience": "AzureADMyOrg",
+    "createdDateTime": "2026-08-06T12:27:19Z",
+    "passwordCredentials": [
+      {
+        "customKeyIdentifier": null,
+        "displayName": "secret",
+        "endDateTime": "2028-08-05T12:28:41.168Z",
+        "hint": "70z",
+        "keyId": "94a666be-c4ca-41fd-8eab-547f131b4852",
+        "secretText": null,
+        "startDateTime": "2026-08-06T12:28:41.168Z"
+      }
+    ],
+    "keyCredentials": [],
+    "requiredResourceAccess": [
+      {
+        "resourceAppId": "00000003-0000-0000-c000-000000000000",
+        "resourceAccess": [
+          {
+            "id": "e1fe6dd8-ba31-4d61-89e7-88639da4683d",
+            "type": "Scope"
+          },
+          {
+            "id": "dc377aa6-52d8-4e23-b271-2a7ae04cedf3",
+            "type": "Role"
+          },
+          {
+            "id": "498476ce-e0fe-48b0-b801-37ba7e2685c6",
+            "type": "Role"
+          },
+          {
+            "id": "246dd0d5-5bd0-4def-940b-0421030a5b68",
+            "type": "Role"
+          },
+          {
+            "id": "1b620472-6534-4fe6-9df2-4680e8aa28ec",
+            "type": "Role"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "6b7fd2bf-ef28-40c0-b91a-c8a0b7632af5",
+    "appId": "721e0af7-9dd8-4cbb-964b-71c7b5154cdd",
+    "displayName": "Power BI Dashboard",
+    "signInAudience": "AzureADMyOrg",
+    "createdDateTime": "2026-02-11T15:01:16Z",
+    "passwordCredentials": [
+      {
+        "customKeyIdentifier": null,
+        "displayName": "secret",
+        "endDateTime": "2026-08-10T14:01:19.683Z",
+        "hint": "sxF",
+        "keyId": "7a72139b-1922-4370-9dba-ce26f6ecc1cc",
+        "secretText": null,
+        "startDateTime": "2026-02-11T15:01:19.683Z"
+      }
+    ],
+    "keyCredentials": [],
+    "requiredResourceAccess": [
+      {
+        "resourceAppId": "00000003-0000-0000-c000-000000000000",
+        "resourceAccess": [
+          {
+            "id": "7a6ee1e7-141e-4cec-ae74-d9db155731ff",
+            "type": "Role"
+          },
+          {
+            "id": "dc377aa6-52d8-4e23-b271-2a7ae04cedf3",
+            "type": "Role"
+          },
+          {
+            "id": "2f51be20-0bb4-4fed-bf7b-db946066c75e",
+            "type": "Role"
+          },
+          {
+            "id": "230c1aed-a721-4c5d-9cb4-a90514e508ef",
+            "type": "Role"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "72fa9c70-f8eb-44d6-bf1f-ef9f18df1ae3",
+    "appId": "d6c63c56-2e5c-4060-810b-f759bda03e19",
+    "displayName": "prototype_app",
+    "signInAudience": "AzureADMyOrg",
+    "createdDateTime": "2025-10-22T08:13:53Z",
+    "passwordCredentials": [],
+    "keyCredentials": [],
+    "requiredResourceAccess": []
+  },
+  {
+    "id": "79546a03-cb78-4c45-b888-b1cdbebee468",
+    "appId": "ccf7ff69-0f7e-4d46-b165-1ddf62b95c4b",
+    "displayName": "operoo entra",
+    "signInAudience": "AzureADMyOrg",
+    "createdDateTime": "2026-04-27T18:55:12Z",
+    "passwordCredentials": [
+      {
+        "customKeyIdentifier": null,
+        "displayName": "16062026",
+        "endDateTime": "2026-12-13T20:14:49.427Z",
+        "hint": "kzf",
+        "keyId": "0abfaf44-6b13-4731-9392-18a25cdf0bb9",
+        "secretText": null,
+        "startDateTime": "2026-06-16T19:14:49.427Z"
+      },
+      {
+        "customKeyIdentifier": null,
+        "displayName": "15062026",
+        "endDateTime": "2026-12-12T14:11:46.058Z",
+        "hint": "X2E",
+        "keyId": "289c6e36-f466-41c2-b946-1c65ea79d6f9",
+        "secretText": null,
+        "startDateTime": "2026-06-15T13:11:46.058Z"
+      }
+    ],
+    "keyCredentials": [],
+    "requiredResourceAccess": [
+      {
+        "resourceAppId": "00000003-0000-0000-c000-000000000000",
+        "resourceAccess": [
+          {
+            "id": "e1fe6dd8-ba31-4d61-89e7-88639da4683d",
+            "type": "Scope"
+          },
+          {
+            "id": "b0afded3-3588-46d8-8b3d-9842eff778da",
+            "type": "Role"
+          },
+          {
+            "id": "2f51be20-0bb4-4fed-bf7b-db946066c75e",
+            "type": "Role"
+          },
+          {
+            "id": "7ab1d382-f21e-4acd-a863-ba3e13f7da61",
+            "type": "Role"
+          },
+          {
+            "id": "62a82d76-70ea-41e2-9197-370581804d09",
+            "type": "Role"
+          },
+          {
+            "id": "dbaae8cf-10b5-4b86-a4a1-f871c94c6695",
+            "type": "Role"
+          },
+          {
+            "id": "5facf0c1-8979-4e95-abcf-ff3d079771c0",
+            "type": "Role"
+          },
+          {
+            "id": "e2a3a72e-5f79-4c64-b1b1-878b674786c9",
+            "type": "Role"
+          },
+          {
+            "id": "b633e1c5-b582-4048-a93e-9f11b44c7e96",
+            "type": "Role"
+          },
+          {
+            "id": "498476ce-e0fe-48b0-b801-37ba7e2685c6",
+            "type": "Role"
+          },
+          {
+            "id": "230c1aed-a721-4c5d-9cb4-a90514e508ef",
+            "type": "Role"
+          },
+          {
+            "id": "2a60023f-3219-47ad-baa4-40e17cd02a1d",
+            "type": "Role"
+          },
+          {
+            "id": "741f803b-c850-494e-b5df-cde7c675a1ca",
+            "type": "Role"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "7a1f1d72-6690-43d6-a2d1-c0ac34d7c795",
+    "appId": "57f89164-2628-487e-8aea-e3fd167f40dc",
+    "displayName": "PowerPlatformGraphConnectorApplication",
+    "signInAudience": "AzureADMultipleOrgs",
+    "createdDateTime": "2025-11-17T14:18:29Z",
+    "passwordCredentials": [
+      {
+        "customKeyIdentifier": null,
+        "displayName": "sec",
+        "endDateTime": "2027-03-29T09:19:16.874Z",
+        "hint": "3cm",
+        "keyId": "a3457684-91a8-497b-91f5-bd800e18d193",
+        "secretText": null,
+        "startDateTime": "2026-09-30T09:19:16.874Z"
+      },
+      {
+        "customKeyIdentifier": null,
+        "displayName": "secret",
+        "endDateTime": "2027-03-28T12:07:27.581Z",
+        "hint": "g02",
+        "keyId": "5b7eb8ca-810c-4a11-9c92-d4a0083e661a",
+        "secretText": null,
+        "startDateTime": "2026-09-29T12:07:27.581Z"
+      },
+      {
+        "customKeyIdentifier": null,
+        "displayName": "secret",
+        "endDateTime": "2027-03-21T15:58:46.583Z",
+        "hint": "_4a",
+        "keyId": "87868b39-ad35-47a2-a89d-b76dd1cbe6b7",
+        "secretText": null,
+        "startDateTime": "2026-09-22T14:58:46.583Z"
+      },
+      {
+        "customKeyIdentifier": null,
+        "displayName": "wd",
+        "endDateTime": "2027-01-31T13:42:32.45Z",
+        "hint": "tj2",
+        "keyId": "f1e8c99b-016a-4a2b-a6d3-13828092a4ae",
+        "secretText": null,
+        "startDateTime": "2026-08-04T12:42:32.45Z"
+      },
+      {
+        "customKeyIdentifier": null,
+        "displayName": "wdawd",
+        "endDateTime": "2027-01-31T13:16:01.062Z",
+        "hint": "aR3",
+        "keyId": "d1dff12b-30d0-410f-90aa-63a00d07177c",
+        "secretText": null,
+        "startDateTime": "2026-08-04T12:16:01.062Z"
+      },
+      {
+        "customKeyIdentifier": null,
+        "displayName": "sec",
+        "endDateTime": "2027-01-31T12:10:39.136Z",
+        "hint": "1Fj",
+        "keyId": "99c7472b-8268-40fa-b514-53cefdff9cb0",
+        "secretText": null,
+        "startDateTime": "2026-08-04T11:10:39.136Z"
+      },
+      {
+        "customKeyIdentifier": null,
+        "displayName": "secret",
+        "endDateTime": "2027-01-31T08:36:59.059Z",
+        "hint": "nHI",
+        "keyId": "2fd44567-ff08-4140-a0ab-127385eb4490",
+        "secretText": null,
+        "startDateTime": "2026-08-04T07:36:59.059Z"
+      }
+    ],
+    "keyCredentials": [],
+    "requiredResourceAccess": [
+      {
+        "resourceAppId": "00000003-0000-0000-c000-000000000000",
+        "resourceAccess": [
+          {
+            "id": "5b07b0dd-2377-4e44-a38d-703f09a0dc3c",
+            "type": "Role"
+          },
+          {
+            "id": "c7a5be92-2b3d-4540-8a67-c96dcaae8b43",
+            "type": "Role"
+          },
+          {
+            "id": "7ab1d382-f21e-4acd-a863-ba3e13f7da61",
+            "type": "Role"
+          },
+          {
+            "id": "5b567255-7703-4780-807c-7be8301ae99b",
+            "type": "Role"
+          },
+          {
+            "id": "dbaae8cf-10b5-4b86-a4a1-f871c94c6695",
+            "type": "Role"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "8b64fbab-bfc9-4094-928a-05056e0ab7a3",
+    "appId": "954af450-d5cf-4743-a356-39405bfd18f8",
+    "displayName": "hochzwei Nachweisakte (nur lesend)",
+    "signInAudience": "AzureADMyOrg",
+    "createdDateTime": "2026-10-07T12:28:08Z",
+    "passwordCredentials": [],
+    "keyCredentials": [
+      {
+        "customKeyIdentifier": "835975392BED81F738FC075BA23CFE457DC7A278",
+        "displayName": "CN=Nachweisakte Dev Tenant",
+        "endDateTime": "2028-10-07T13:25:01Z",
+        "key": "MIIDHjCCAgagAwIBAgIQTaQAd7IDIIdC6djMFeTjRzANBgkqhkiG9w0BAQsFADAiMSAwHgYDVQQDDBdOYWNod2Vpc2FrdGUgRGV2IFRlbmFudDAeFw0yNjEwMDcxMzE1MDFaFw0yODEwMDcxMzI1MDFaMCIxIDAeBgNVBAMMF05hY2h3ZWlzYWt0ZSBEZXYgVGVuYW50MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvhHFMKqL7Rkpd26K0A8lYsJ7Y3gAOFz5KaL63fG9DtcBagcsd43TzowXv+sIj9AYBe8Zcor0WyUVUhEo6IlpzHslOxBrYCdXpgibl1qifG9TuLqWCFNuAg/aiofggw7eX9wIYgNMfisbc/dX+LhjlDbpmYDlU5+fz3KNrwvI7Iizsth+FiR9g2jrQAUwGeSl4jpxyviI0GOb+PgCxdzoHSvFj58zqdmr1RnDiPT0Ej0GwSJIIkTRLKrfYHRt13VQ3QqQWAavnztqznOH2cwb3kQVJuyqi21DKyF/XzH6RIcgc1KDFbPvOISf18QA8zU9tjjUDXh8jzfVyzr5PrfGwQIDAQABo1AwTjAOBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMBMB0GA1UdDgQWBBT8HWOc1ho+3sJlUNwwmNKfh96uYDANBgkqhkiG9w0BAQsFAAOCAQEACj7R9IKmhJHBbuovGbkXKn1IqgELU8fx/EAc6bzIPq/IvjcNa7qxsr7VYIsgJg6vDDaHwV5qF1sqePMmwKIwIBsWyLQ/LIIgMrxUL6zgEw6GzRwv3mLTK/6DdxxB3O6kavoaqG2C23iJRUzxVdLNF10OfnUh8ooxqUKuMLEiubk5kYP/W0IW1/UW/8XcNDNRGEuVxHjj+wyG33UOnWeQWuo5HaSwkyhd/1CZaDKiRupskwkavhR3BxBbMiL9f42PxjhE/h4ZjIFGUoLts1G60W+7JKR2Sr0QuiYHJQJe9A7AS77JXNsg0c09V2qcl6ZP4F+Hm91g8B5m+wrJcGbAqA==",
+        "keyId": "f8a7c0a6-7150-4aa9-b724-d78a7a983839",
+        "startDateTime": "2026-10-07T13:15:01Z",
+        "type": "AsymmetricX509Cert",
+        "usage": "Verify"
+      }
+    ],
+    "requiredResourceAccess": [
+      {
+        "resourceAppId": "00000002-0000-0ff1-ce00-000000000000",
+        "resourceAccess": [
+          {
+            "id": "dc50a0fb-09a3-484d-be87-e023b12c6440",
+            "type": "Role"
+          }
+        ]
+      },
+      {
+        "resourceAppId": "00000003-0000-0000-c000-000000000000",
+        "resourceAccess": [
+          {
+            "id": "b0afded3-3588-46d8-8b3d-9842eff778da",
+            "type": "Role"
+          },
+          {
+            "id": "dc377aa6-52d8-4e23-b271-2a7ae04cedf3",
+            "type": "Role"
+          },
+          {
+            "id": "2f51be20-0bb4-4fed-bf7b-db946066c75e",
+            "type": "Role"
+          },
+          {
+            "id": "58ca0d9a-1575-47e1-a3cb-007ef2e4583b",
+            "type": "Role"
+          },
+          {
+            "id": "06a5fe6d-c49d-46a7-b082-56b1b14103c7",
+            "type": "Role"
+          },
+          {
+            "id": "7ab1d382-f21e-4acd-a863-ba3e13f7da61",
+            "type": "Role"
+          },
+          {
+            "id": "ae73097b-cb2a-4447-b064-5d80f6093921",
+            "type": "Role"
+          },
+          {
+            "id": "c74fd47d-ed3c-45c3-9a9e-b8676de685d2",
+            "type": "Role"
+          },
+          {
+            "id": "6e472fd1-ad78-48da-a0f0-97ab2c6b769e",
+            "type": "Role"
+          },
+          {
+            "id": "e30060de-caa5-4331-99d3-6ac6c966a9a4",
+            "type": "Role"
+          },
+          {
+            "id": "bb70e231-92dc-4729-aff5-697b3f04be95",
+            "type": "Role"
+          },
+          {
+            "id": "56c84fa9-ea1f-4a15-90f2-90ef41ece2c9",
+            "type": "Role"
+          },
+          {
+            "id": "434d7c66-07c6-4b1f-ab21-417cf2cdaaca",
+            "type": "Role"
+          },
+          {
+            "id": "246dd0d5-5bd0-4def-940b-0421030a5b68",
+            "type": "Role"
+          },
+          {
+            "id": "37730810-e9ba-4e46-b07e-8ca78d182097",
+            "type": "Role"
+          },
+          {
+            "id": "230c1aed-a721-4c5d-9cb4-a90514e508ef",
+            "type": "Role"
+          },
+          {
+            "id": "ee353f83-55ef-4b78-82da-555bfa2b4b95",
+            "type": "Role"
+          },
+          {
+            "id": "ff278e11-4a33-4d0c-83d2-d01dc58929a5",
+            "type": "Role"
+          },
+          {
+            "id": "c7fbd983-d9aa-4fa7-84b8-17382c103bc4",
+            "type": "Role"
+          },
+          {
+            "id": "ef31918f-2d50-4755-8943-b8638c0a077e",
+            "type": "Role"
+          },
+          {
+            "id": "5f0ffea2-f474-4cf2-9834-61cda2bcea5c",
+            "type": "Role"
+          },
+          {
+            "id": "f8dcd971-5d83-4e1e-aa95-ef44611ad351",
+            "type": "Role"
+          },
+          {
+            "id": "83d4163d-a2d8-4d3b-9695-4ae3ca98f888",
+            "type": "Role"
+          },
+          {
+            "id": "dd98c7f5-2d42-42d3-a0e4-633161547251",
+            "type": "Role"
+          },
+          {
+            "id": "38d9df27-64da-44fd-b7c5-a6fbac20248f",
+            "type": "Role"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "98fbf337-b459-4f83-b8c6-cf1ca8bc206b",
+    "appId": "d0d755b6-16a1-4d78-9491-0078fa7b3995",
+    "displayName": "operoo-exchange",
+    "signInAudience": "AzureADMyOrg",
+    "createdDateTime": "2026-06-02T15:00:08Z",
+    "passwordCredentials": [
+      {
+        "customKeyIdentifier": null,
+        "displayName": "15062026",
+        "endDateTime": "2026-12-12T14:14:16.848Z",
+        "hint": "nGt",
+        "keyId": "176c759f-f97f-42e3-a1f5-2bc535b00501",
+        "secretText": null,
+        "startDateTime": "2026-06-15T13:14:16.848Z"
+      },
+      {
+        "customKeyIdentifier": null,
+        "displayName": "02062026",
+        "endDateTime": "2026-11-29T16:02:05.599Z",
+        "hint": "B6y",
+        "keyId": "c83ad8c3-934f-499a-a209-110c5d1302c1",
+        "secretText": null,
+        "startDateTime": "2026-06-02T15:02:05.599Z"
+      }
+    ],
+    "keyCredentials": [],
+    "requiredResourceAccess": [
+      {
+        "resourceAppId": "00000003-0000-0000-c000-000000000000",
+        "resourceAccess": [
+          {
+            "id": "e1fe6dd8-ba31-4d61-89e7-88639da4683d",
+            "type": "Scope"
+          },
+          {
+            "id": "b633e1c5-b582-4048-a93e-9f11b44c7e96",
+            "type": "Role"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "be4d540d-e8df-4d6b-a4e5-6f0f83f63822",
+    "appId": "5463452b-162f-4429-b3b1-d9c3e4662aa6",
+    "displayName": "Opero ",
+    "signInAudience": "AzureADMultipleOrgs",
+    "createdDateTime": "2026-03-20T13:42:53Z",
+    "passwordCredentials": [
+      {
+        "customKeyIdentifier": null,
+        "displayName": "opero dev ",
+        "endDateTime": "2026-09-16T12:44:24.954Z",
+        "hint": "EIT",
+        "keyId": "7c574d56-f0ed-4805-a9c9-c9428c4a5724",
+        "secretText": null,
+        "startDateTime": "2026-03-20T13:44:24.954Z"
+      }
+    ],
+    "keyCredentials": [],
+    "requiredResourceAccess": [
+      {
+        "resourceAppId": "00000003-0000-0000-c000-000000000000",
+        "resourceAccess": [
+          {
+            "id": "e1fe6dd8-ba31-4d61-89e7-88639da4683d",
+            "type": "Scope"
+          },
+          {
+            "id": "b0afded3-3588-46d8-8b3d-9842eff778da",
+            "type": "Role"
+          },
+          {
+            "id": "2f51be20-0bb4-4fed-bf7b-db946066c75e",
+            "type": "Role"
+          },
+          {
+            "id": "7ab1d382-f21e-4acd-a863-ba3e13f7da61",
+            "type": "Role"
+          },
+          {
+            "id": "5b567255-7703-4780-807c-7be8301ae99b",
+            "type": "Role"
+          },
+          {
+            "id": "dbaae8cf-10b5-4b86-a4a1-f871c94c6695",
+            "type": "Role"
+          },
+          {
+            "id": "e2a3a72e-5f79-4c64-b1b1-878b674786c9",
+            "type": "Role"
+          },
+          {
+            "id": "b633e1c5-b582-4048-a93e-9f11b44c7e96",
+            "type": "Role"
+          },
+          {
+            "id": "df021288-bdef-4463-88db-98f22de89214",
+            "type": "Role"
+          },
+          {
+            "id": "741f803b-c850-494e-b5df-cde7c675a1ca",
+            "type": "Role"
+          },
+          {
+            "id": "627169a8-8c15-451c-861a-5b80e383de5c",
+            "type": "Role"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "c397abfb-b901-4a73-bc3d-746bf33df5e0",
+    "appId": "389c4880-e85c-46d4-b674-f30f96fe7285",
+    "displayName": "P2P Server",
+    "signInAudience": "AzureADMyOrg",
+    "createdDateTime": "2025-10-22T08:37:56Z",
+    "passwordCredentials": [],
+    "keyCredentials": [],
+    "requiredResourceAccess": []
+  },
+  {
+    "id": "d0639399-ca79-4f0e-868d-09eecb1f1ecf",
+    "appId": "01a96d9a-4fd4-4a34-b993-b1025647b912",
+    "displayName": "IntuneWin32App-Automation",
+    "signInAudience": "AzureADMyOrg",
+    "createdDateTime": "2026-04-20T15:00:18Z",
+    "passwordCredentials": [
+      {
+        "customKeyIdentifier": null,
+        "displayName": "secret",
+        "endDateTime": "2026-10-17T15:06:32.232Z",
+        "hint": "oOs",
+        "keyId": "30fc0c34-27b9-4dfc-840d-0aa957de3831",
+        "secretText": null,
+        "startDateTime": "2026-04-20T15:06:32.232Z"
+      }
+    ],
+    "keyCredentials": [],
+    "requiredResourceAccess": [
+      {
+        "resourceAppId": "00000003-0000-0000-c000-000000000000",
+        "resourceAccess": [
+          {
+            "id": "78145de6-330d-4800-a6ce-494ff2d33d07",
+            "type": "Role"
+          },
+          {
+            "id": "9241abd9-d0e6-425a-bd4f-47ba86e767a4",
+            "type": "Role"
+          },
+          {
+            "id": "58ca0d9a-1575-47e1-a3cb-007ef2e4583b",
+            "type": "Role"
+          },
+          {
+            "id": "5b567255-7703-4780-807c-7be8301ae99b",
+            "type": "Role"
+          },
+          {
+            "id": "98830695-27a2-44f7-8c18-0c3ebc9698f6",
+            "type": "Role"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "d6c494d7-94ec-413a-83bc-59ed6d8b5a0b",
+    "appId": "a7243073-6cbc-49e6-ac85-fca60f24cfc0",
+    "displayName": "Maester DevOps Account",
+    "signInAudience": "AzureADMyOrg",
+    "createdDateTime": "2026-08-25T13:14:17Z",
+    "passwordCredentials": [],
+    "keyCredentials": [],
+    "requiredResourceAccess": [
+      {
+        "resourceAppId": "00000003-0000-0000-c000-000000000000",
+        "resourceAccess": [
+          {
+            "id": "b0afded3-3588-46d8-8b3d-9842eff778da",
+            "type": "Role"
+          },
+          {
+            "id": "dc377aa6-52d8-4e23-b271-2a7ae04cedf3",
+            "type": "Role"
+          },
+          {
+            "id": "2f51be20-0bb4-4fed-bf7b-db946066c75e",
+            "type": "Role"
+          },
+          {
+            "id": "58ca0d9a-1575-47e1-a3cb-007ef2e4583b",
+            "type": "Role"
+          },
+          {
+            "id": "06a5fe6d-c49d-46a7-b082-56b1b14103c7",
+            "type": "Role"
+          },
+          {
+            "id": "7ab1d382-f21e-4acd-a863-ba3e13f7da61",
+            "type": "Role"
+          },
+          {
+            "id": "ae73097b-cb2a-4447-b064-5d80f6093921",
+            "type": "Role"
+          },
+          {
+            "id": "c74fd47d-ed3c-45c3-9a9e-b8676de685d2",
+            "type": "Role"
+          },
+          {
+            "id": "6e472fd1-ad78-48da-a0f0-97ab2c6b769e",
+            "type": "Role"
+          },
+          {
+            "id": "e30060de-caa5-4331-99d3-6ac6c966a9a4",
+            "type": "Role"
+          },
+          {
+            "id": "bb70e231-92dc-4729-aff5-697b3f04be95",
+            "type": "Role"
+          },
+          {
+            "id": "56c84fa9-ea1f-4a15-90f2-90ef41ece2c9",
+            "type": "Role"
+          },
+          {
+            "id": "434d7c66-07c6-4b1f-ab21-417cf2cdaaca",
+            "type": "Role"
+          },
+          {
+            "id": "246dd0d5-5bd0-4def-940b-0421030a5b68",
+            "type": "Role"
+          },
+          {
+            "id": "37730810-e9ba-4e46-b07e-8ca78d182097",
+            "type": "Role"
+          },
+          {
+            "id": "230c1aed-a721-4c5d-9cb4-a90514e508ef",
+            "type": "Role"
+          },
+          {
+            "id": "ee353f83-55ef-4b78-82da-555bfa2b4b95",
+            "type": "Role"
+          },
+          {
+            "id": "2a60023f-3219-47ad-baa4-40e17cd02a1d",
+            "type": "Role"
+          },
+          {
+            "id": "ff278e11-4a33-4d0c-83d2-d01dc58929a5",
+            "type": "Role"
+          },
+          {
+            "id": "c7fbd983-d9aa-4fa7-84b8-17382c103bc4",
+            "type": "Role"
+          },
+          {
+            "id": "ef31918f-2d50-4755-8943-b8638c0a077e",
+            "type": "Role"
+          },
+          {
+            "id": "f8dcd971-5d83-4e1e-aa95-ef44611ad351",
+            "type": "Role"
+          },
+          {
+            "id": "5f0ffea2-f474-4cf2-9834-61cda2bcea5c",
+            "type": "Role"
+          },
+          {
+            "id": "83d4163d-a2d8-4d3b-9695-4ae3ca98f888",
+            "type": "Role"
+          },
+          {
+            "id": "dd98c7f5-2d42-42d3-a0e4-633161547251",
+            "type": "Role"
+          },
+          {
+            "id": "38d9df27-64da-44fd-b7c5-a6fbac20248f",
+            "type": "Role"
+          }
+        ]
+      },
+      {
+        "resourceAppId": "00000003-0000-0ff1-ce00-000000000000",
+        "resourceAccess": [
+          {
+            "id": "56680e0d-d2a3-4ae1-80d8-3c4f2100e3d0",
+            "type": "Scope"
+          }
+        ]
+      }
+    ]
+  }
+]

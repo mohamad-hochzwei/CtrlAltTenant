@@ -1,0 +1,7 @@
+{
+  "Graph": "failed: Der Begriff „Connect-MgGraph“ wird nicht als Name eines Cmdlets, einer Funktion, einer Skriptdatei oder eines ausführbaren Programms erkannt.\r\nPrüfen Sie die Schreibweise des Namens bzw. stellen Sie sicher, dass der Pfad korrekt angegeben wurde, und versuchen Sie es erneut.",
+  "Exchange": "failed: Der Begriff „Connect-ExchangeOnline“ wird nicht als Name eines Cmdlets, einer Funktion, einer Skriptdatei oder eines ausführbaren Programms erkannt.\r\nPrüfen Sie die Schreibweise des Namens bzw. stellen Sie sicher, dass der Pfad korrekt angegeben wurde, und versuchen Sie es erneut.",
+  "Purview": "failed: Der Begriff „Connect-IPPSSession“ wird nicht als Name eines Cmdlets, einer Funktion, einer Skriptdatei oder eines ausführbaren Programms erkannt.\r\nPrüfen Sie die Schreibweise des Namens bzw. stellen Sie sicher, dass der Pfad korrekt angegeben wurde, und versuchen Sie es erneut.",
+  "Teams": "failed: Der Begriff „Connect-MicrosoftTeams“ wird nicht als Name eines Cmdlets, einer Funktion, einer Skriptdatei oder eines ausführbaren Programms erkannt.\r\nPrüfen Sie die Schreibweise des Namens bzw. stellen Sie sicher, dass der Pfad korrekt angegeben wurde, und versuchen Sie es erneut.",
+  "Dns": "failed: org.domains.json missing, run Graph first."
+}
