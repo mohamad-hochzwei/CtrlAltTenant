@@ -3,7 +3,8 @@
     Step 1: read-only inventory of one or all Schuler tenants.
 
 .DESCRIPTION
-    Per tenant, each workload signs in interactively and writes one JSON per area:
+    Per tenant, each workload signs in as that tenant's own app (certificate, no
+    prompt) and writes one JSON per area:
 
         tenants.json ──► Export-Inventory.ps1
                            ├─ Graph    (Entra, CA, Intune, SharePoint, Secure Score, Copilot licenses)
@@ -29,12 +30,7 @@ param(
     [string] $Tenant = '*',
 
     # Comma list. "pwsh ./x.ps1 -Workload A,B" passes one string, split below.
-    [string[]] $Workload = @('Graph', 'Exchange', 'Purview', 'Teams', 'Dns'),
-
-    # Wam: Windows broker, preferred. Browser: system browser for hosts where WAM
-    # fails (e.g. embedded terminals). Graph always uses WAM.
-    [ValidateSet('Wam', 'Browser')]
-    [string] $Broker = 'Wam'
+    [string[]] $Workload = @('Graph', 'Exchange', 'Purview', 'Teams', 'Dns')
 )
 
 $ErrorActionPreference = 'Stop'
@@ -60,10 +56,10 @@ $EXO_PLAN       = '^EXCHANGE_S_(STANDARD|ENTERPRISE|DESKLESS|ESSENTIALS)$'   # n
 $TEAMS_PLAN     = '^TEAMS1$'
 $NOT_LICENSED   = 'not licensed'
 $EXPORTED       = 'exported'
+$CERT_STORE     = 'Cert:\CurrentUser\My'
 
-# Graph scopes are not listed here: the app registration in Entra holds them as
-# delegated permissions (admin consent per tenant). Effective rights = consented
-# permissions ∩ signed-in user's role (Global Reader). See README.
+# App-only sign-in, one app and certificate per tenant (CreateCertificate.ps1,
+# CreateEntraApp.ps1). Permissions live on the app in Entra, not here.
 
 
 # ─── Graph areas ─────────────────────────────────────────────────────────────
@@ -259,34 +255,21 @@ function Get-TenantId([string] $Domain) {
 }
 
 
-# Without our app, Graph would fall back to the Graph CLI app and its consent.
-function Assert-ClientId($Entry) {
-    if (-not $Entry.clientId) { throw "clientId missing in tenants.json for '$($Entry.name)'." }
-}
+# Fails before any sign-in if the tenant's app or certificate is not set up.
+function Assert-AppLogin($Entry) {
+    if (-not $Entry.clientId -or -not $Entry.certificate) {
+        throw "clientId or certificate missing in tenants.json for '$($Entry.name)'."
+    }
 
-
-# Optional account splat, avoids picking a cached account of another tenant.
-function Get-Upn($Entry, [string] $Name) {
-    if (-not $Entry.account) { return @{} }
-
-    return @{ $Name = $Entry.account }
-}
-
-
-# Splat for EXO, Purview and Teams: system browser instead of WAM on request.
-function Get-BrokerArgs {
-    if ($Broker -eq 'Browser') { return @{ DisableWAM = $true } }
-
-    return @{}
+    $cert = Get-Item (Join-Path $CERT_STORE $Entry.certificate) -ErrorAction SilentlyContinue
+    if (-not $cert.HasPrivateKey) { throw "Certificate $($Entry.certificate) with private key not in $CERT_STORE." }
+    if ($cert.NotAfter -lt (Get-Date)) { throw "Certificate $($Entry.certificate) expired $($cert.NotAfter.ToString('yyyy-MM-dd'))." }
 }
 
 
 function Export-Graph($Entry, [string] $Dir) {
-    # No -Scopes: the token carries the delegated permissions consented in Entra.
-    # Default ContextScope (CurrentUser): with "Process" the WAM token is not
-    # reused and the account picker shows twice. No device code: Microsoft
-    # recommends blocking it via Conditional Access.
-    Connect-MgGraph -TenantId $Entry.tenantId -ClientId $Entry.clientId -NoWelcome
+    # No -Scopes: the token carries the application permissions consented in Entra.
+    Connect-MgGraph -TenantId $Entry.tenantId -ClientId $Entry.clientId -CertificateThumbprint $Entry.certificate -NoWelcome
 
     try {
         # Probe once, so a failed login or missing consent aborts here.
@@ -307,9 +290,8 @@ function Export-Graph($Entry, [string] $Dir) {
 function Export-Exchange($Entry, [string] $Dir) {
     if (-not (Test-Plan $Dir $EXO_PLAN)) { return $NOT_LICENSED }
 
-    $upn    = Get-Upn $Entry 'UserPrincipalName'
-    $broker = Get-BrokerArgs
-    Connect-ExchangeOnline -Organization $Entry.domain -ShowBanner:$false @upn @broker
+    # -Organization must be the .onmicrosoft.com domain for app-only.
+    Connect-ExchangeOnline -AppId $Entry.clientId -CertificateThumbprint $Entry.certificate -Organization $Entry.domain -ShowBanner:$false
     Save-Areas $Dir $ExchangeAreas
     Disconnect-ExchangeOnline -Confirm:$false
 
@@ -318,9 +300,7 @@ function Export-Exchange($Entry, [string] $Dir) {
 
 
 function Export-Purview($Entry, [string] $Dir) {
-    $upn    = Get-Upn $Entry 'UserPrincipalName'
-    $broker = Get-BrokerArgs
-    Connect-IPPSSession -Organization $Entry.domain @upn @broker
+    Connect-IPPSSession -AppId $Entry.clientId -CertificateThumbprint $Entry.certificate -Organization $Entry.domain -ShowBanner:$false
     Save-Areas $Dir $PurviewAreas
     Disconnect-ExchangeOnline -Confirm:$false
 
@@ -331,10 +311,7 @@ function Export-Purview($Entry, [string] $Dir) {
 function Export-Teams($Entry, [string] $Dir) {
     if (-not (Test-Plan $Dir $TEAMS_PLAN)) { return $NOT_LICENSED }
 
-    # No -AccountId: in the Teams module it means Windows-integrated sign-in
-    # (OS account), not a login hint.
-    $broker = Get-BrokerArgs
-    Connect-MicrosoftTeams -TenantId $Entry.tenantId @broker | Out-Null
+    Connect-MicrosoftTeams -TenantId $Entry.tenantId -ApplicationId $Entry.clientId -CertificateThumbprint $Entry.certificate | Out-Null
     Save-Areas $Dir $TeamsAreas
     Disconnect-MicrosoftTeams | Out-Null
 
@@ -379,7 +356,7 @@ function Export-Tenant($Entry) {
     Write-Host "`n== $($Entry.label) ($($Entry.domain))" -ForegroundColor Cyan
 
     # Before the folder exists: Compare-Inventory takes every folder as an exported tenant.
-    try   { Assert-ClientId $Entry }
+    try   { Assert-AppLogin $Entry }
     catch { Write-Host "  skip ($($_.Exception.Message))" -ForegroundColor Yellow; return }
 
     $dir = Join-Path $EXPORT_ROOT $Entry.name
