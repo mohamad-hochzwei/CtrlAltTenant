@@ -32,7 +32,7 @@ param(
     [string[]] $Workload = @('Graph', 'Exchange', 'Purview', 'Teams', 'Dns'),
 
     # Wam: Windows broker, preferred. Browser: system browser for hosts where WAM
-    # fails (e.g. embedded terminals). Graph always uses WAM with the default app.
+    # fails (e.g. embedded terminals). Graph always uses WAM.
     [ValidateSet('Wam', 'Browser')]
     [string] $Broker = 'Wam'
 )
@@ -61,22 +61,9 @@ $TEAMS_PLAN     = '^TEAMS1$'
 $NOT_LICENSED   = 'not licensed'
 $EXPORTED       = 'exported'
 
-# Delegated, read-only. Effective rights = scopes ∩ signed-in user's role (Global Reader).
-$Scopes = @(
-    'Organization.Read.All'
-    'Directory.Read.All'
-    'Policy.Read.All'
-    'Policy.Read.DeviceConfiguration'
-    'RoleManagement.Read.Directory'
-    'AuditLog.Read.All'
-    'SecurityEvents.Read.All'
-    'DeviceManagementConfiguration.Read.All'
-    'DeviceManagementApps.Read.All'
-    'DeviceManagementManagedDevices.Read.All'
-    'DeviceManagementServiceConfig.Read.All'
-    'DeviceManagementScripts.Read.All'
-    'SharePointTenantSettings.Read.All'
-)
+# Graph scopes are not listed here: the app registration in Entra holds them as
+# delegated permissions (admin consent per tenant). Effective rights = consented
+# permissions ∩ signed-in user's role (Global Reader). See README.
 
 
 # ─── Graph areas ─────────────────────────────────────────────────────────────
@@ -272,6 +259,12 @@ function Get-TenantId([string] $Domain) {
 }
 
 
+# Without our app, Graph would fall back to the Graph CLI app and its consent.
+function Assert-ClientId($Entry) {
+    if (-not $Entry.clientId) { throw "clientId missing in tenants.json for '$($Entry.name)'." }
+}
+
+
 # Optional account splat, avoids picking a cached account of another tenant.
 function Get-Upn($Entry, [string] $Name) {
     if (-not $Entry.account) { return @{} }
@@ -289,19 +282,14 @@ function Get-BrokerArgs {
 
 
 function Export-Graph($Entry, [string] $Dir) {
+    # No -Scopes: the token carries the delegated permissions consented in Entra.
     # Default ContextScope (CurrentUser): with "Process" the WAM token is not
-    # reused and the account picker shows twice.
-    $login = @{ TenantId = $Entry.tenantId; Scopes = $Scopes; NoWelcome = $true }
-
-    # Dedicated app registration if Schuler provides one, otherwise Graph CLI app.
-    if ($Entry.clientId) { $login.ClientId = $Entry.clientId }
-
-    # Interactive via WAM (Windows default since SDK 2.34). No device code:
-    # Microsoft recommends blocking it via Conditional Access.
-    Connect-MgGraph @login
+    # reused and the account picker shows twice. No device code: Microsoft
+    # recommends blocking it via Conditional Access.
+    Connect-MgGraph -TenantId $Entry.tenantId -ClientId $Entry.clientId -NoWelcome
 
     try {
-        # Probe once, so a failed login aborts here instead of re-prompting per area.
+        # Probe once, so a failed login or missing consent aborts here.
         Invoke-MgGraphRequest -Method GET -Uri "$GRAPH/v1.0/organization" | Out-Null
 
         foreach ($area in $GraphAreas.Keys) {
@@ -388,13 +376,18 @@ function Resolve-Dns([string] $Name, [string] $Type) {
 
 
 function Export-Tenant($Entry) {
+    Write-Host "`n== $($Entry.label) ($($Entry.domain))" -ForegroundColor Cyan
+
+    # Before the folder exists: Compare-Inventory takes every folder as an exported tenant.
+    try   { Assert-ClientId $Entry }
+    catch { Write-Host "  skip ($($_.Exception.Message))" -ForegroundColor Yellow; return }
+
     $dir = Join-Path $EXPORT_ROOT $Entry.name
     New-Item -ItemType Directory -Force $dir | Out-Null
 
     $script:Errors = [System.Collections.Generic.List[object]]::new()
     $status = [ordered]@{}
 
-    Write-Host "`n== $($Entry.label) ($($Entry.domain))" -ForegroundColor Cyan
     $Entry | Add-Member -NotePropertyName tenantId -NotePropertyValue (Get-TenantId $Entry.domain) -Force
 
     foreach ($w in $WORKLOADS) {

@@ -1,7 +1,8 @@
 .env
 .env.*
 
-.pfx
+*.pfx
+*.cer
 
 exports/
 matrix.xlsx

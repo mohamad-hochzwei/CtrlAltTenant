@@ -18,7 +18,7 @@ tenants.json ─► Export-Inventory.ps1 ─► exports/<tenant>/*.json ─► C
 ./Compare-Inventory.ps1                                  # builds matrix.xlsx
 ```
 
-`tenants.json`: set `account` to skip account selection, `clientId` once Schuler created the app registration.
+`tenants.json`: per tenant `clientId` (our app, same value everywhere; tenants without it are skipped) and optional `account` (skips account selection for Exchange and Purview).
 
 Modules: `Microsoft.Graph.Authentication`, `ExchangeOnlineManagement`, `MicrosoftTeams`, `ImportExcel`.
 
@@ -40,27 +40,39 @@ Modules: `Microsoft.Graph.Authentication`, `ExchangeOnlineManagement`, `Microsof
 
 Manual (no read-only API): SharePoint unmanaged-device access and site-level sharing, Copilot settings in the M365 admin center. Global Reader can view both in the portals.
 
-## Permissions (per tenant, least privilege)
+## Permissions
+
+Interactive sign-in with MFA, delegated permissions only. Effective rights = consented permissions ∩ role (Global Reader), so nothing can be changed. The script requests no Graph scopes: the list lives on the app registration in Entra.
 
 | What | Role | App approval |
 |---|---|---|
-| Graph | Global Reader | One-time admin consent, see below |
+| Graph | Global Reader | Our app "hochzwei Inventory", admin consent once per tenant |
 | Exchange + Defender | Global Reader | None (Microsoft first-party app) |
 | Purview | Global Reader | None |
 | Teams | Global Reader | None |
 | DNS | None | None |
 
-Admin consent for the Graph scopes in `Export-Inventory.ps1`, granted by **Cloud Application Administrator** (least privileged for delegated consent) or Global Admin:
+### App registration (once, hochzwei tenant)
 
-- Recommended: dedicated app registration "hochzwei Inventory", public client, redirect URIs `ms-appx-web://microsoft.aad.brokerplugin/<clientId>` (WAM) and `http://localhost`, delegated scopes only, "assignment required" with only our accounts assigned. Client ID goes into `tenants.json`.
-- Alternative: consent on "Microsoft Graph Command Line Tools". Simpler, but the grant applies to every Graph PowerShell user in the tenant.
+- Supported account types: **Multitenant**.
+- Platform "Mobile and desktop applications", redirect URIs `ms-appx-web://microsoft.aad.brokerplugin/<clientId>` (WAM) and `http://localhost`. "Allow public client flows" stays **No** (no device code).
+- No certificates or secrets.
+- API permissions, Microsoft Graph, type **Delegated**: `Organization.Read.All`, `Directory.Read.All`, `Policy.Read.All`, `Policy.Read.DeviceConfiguration`, `RoleManagement.Read.Directory`, `AuditLog.Read.All`, `SecurityEvents.Read.All`, `DeviceManagementConfiguration.Read.All`, `DeviceManagementApps.Read.All`, `DeviceManagementManagedDevices.Read.All`, `DeviceManagementServiceConfig.Read.All`, `DeviceManagementScripts.Read.All`, `SharePointTenantSettings.Read.All`.
 
-Delegated rights = scopes ∩ role. Global Reader cannot write, regardless of scopes.
+A new permission needs admin consent again in every tenant.
+
+### Per Schuler tenant (Global Admin)
+
+1. Invite our hochzwei account as guest, assign **Global Reader** (PIM-eligible is fine: activate before running).
+2. Admin consent: `https://login.microsoftonline.com/<tenant>.onmicrosoft.com/adminconsent?client_id=<clientId>`.
+3. Enterprise applications ► our app ► Properties: **Assignment required = Yes**, then assign only our guest account.
+4. Cross-tenant access settings ► hochzwei tenant ► Inbound ► Trust settings: trust MFA from Entra tenants.
+5. Conditional Access must not block our guest sign-in (compliant device, location). Possibly an exclusion.
+
+Open: Exchange and Purview PowerShell with a guest account is untested. Fallback is a member account in that tenant, set as `account` in `tenants.json`.
 
 Prerequisites besides roles:
 
 - PIM data needs Entra ID P2, MFA registration report needs P1/P2. Missing license shows up in `_errors.json`.
-- Conditional Access must not block our sign-in (compliant device, location). Possibly an exclusion for our accounts.
-- If Global Reader is PIM-eligible: activate before running.
-- Sign-in is interactive (WAM). Device code flow is not used: Microsoft recommends blocking it via Conditional Access. WAM windows may open behind the terminal.
+- WAM windows may open behind the terminal.
 - SharePoint PowerShell is skipped on purpose: it needs SharePoint Administrator (write role).

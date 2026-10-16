@@ -1,10 +1,10 @@
 [
-  { "name": "OPAL",    "label": "OPAL Maschinenentwicklung",    "domain": "opalmaschinenentwicklung.onmicrosoft.com", "account": "", "clientId": "" },
-  { "name": "Amtzell", "label": "Amtzell mit WEBO und Kolibri", "domain": "amtzell.onmicrosoft.com",                  "account": "", "clientId": "" },
-  { "name": "SyTech",  "label": "SyTech",                       "domain": "sytechschuler.onmicrosoft.com",            "account": "", "clientId": "" },
-  { "name": "RohTech", "label": "RohTech-DST",                  "domain": "rohtechdst.onmicrosoft.com",               "account": "", "clientId": "" },
-  { "name": "EnTech",  "label": "EnTech",                       "domain": "entechgmbh.onmicrosoft.com",               "account": "", "clientId": "" },
-  { "name": "SHM",     "label": "SHM",                          "domain": "shmgmbh.onmicrosoft.com",                  "account": "", "clientId": "" },
-  { "name": "SHF",     "label": "SHF",                          "domain": "shfgmbh.onmicrosoft.com",                  "account": "", "clientId": "" },
-  { "name": "Test",    "label": "hochzwei Test (MSFT)",         "domain": "zc0hj.onmicrosoft.com",                    "account": "test-inventory-manu@zc0hj.onmicrosoft.com", "clientId": "" }
+  { "name": "OPAL",    "label": "OPAL Maschinenentwicklung",    "domain": "opalmaschinenentwicklung.onmicrosoft.com", "account": "", "clientId": "ab121e45-72c3-4594-a324-7ee752a5d8d1" },
+  { "name": "Amtzell", "label": "Amtzell mit WEBO und Kolibri", "domain": "amtzell.onmicrosoft.com",                  "account": "", "clientId": "ab121e45-72c3-4594-a324-7ee752a5d8d1" },
+  { "name": "SyTech",  "label": "SyTech",                       "domain": "sytechschuler.onmicrosoft.com",            "account": "", "clientId": "ab121e45-72c3-4594-a324-7ee752a5d8d1" },
+  { "name": "RohTech", "label": "RohTech-DST",                  "domain": "rohtechdst.onmicrosoft.com",               "account": "", "clientId": "ab121e45-72c3-4594-a324-7ee752a5d8d1" },
+  { "name": "EnTech",  "label": "EnTech",                       "domain": "entechgmbh.onmicrosoft.com",               "account": "", "clientId": "ab121e45-72c3-4594-a324-7ee752a5d8d1" },
+  { "name": "SHM",     "label": "SHM",                          "domain": "shmgmbh.onmicrosoft.com",                  "account": "", "clientId": "ab121e45-72c3-4594-a324-7ee752a5d8d1" },
+  { "name": "SHF",     "label": "SHF",                          "domain": "shfgmbh.onmicrosoft.com",                  "account": "", "clientId": "ab121e45-72c3-4594-a324-7ee752a5d8d1" },
+  { "name": "Test",    "label": "hochzwei Test (MSFT)",         "domain": "zc0hj.onmicrosoft.com",                    "account": "test-inventory-manu@zc0hj.onmicrosoft.com", "clientId": "ab121e45-72c3-4594-a324-7ee752a5d8d1" }
 ]
