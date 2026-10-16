@@ -13,12 +13,11 @@ tenants.json ─► Export-Inventory.ps1 ─► exports/<tenant>/*.json ─► C
 ```powershell
 ./Export-Inventory.ps1 -Tenant SyTech                    # one tenant, all workloads
 ./Export-Inventory.ps1 -Tenant SyTech -Workload Teams    # one workload
-./Export-Inventory.ps1 -Tenant SyTech -Broker Browser    # if WAM fails for EXO/Purview/Teams (embedded terminals)
 ./Export-Inventory.ps1                                   # all tenants
 ./Compare-Inventory.ps1                                  # builds matrix.xlsx
 ```
 
-`tenants.json`: per tenant `clientId` (our app, same value everywhere; tenants without it are skipped) and optional `account` (skips account selection for Exchange and Purview).
+`tenants.json`: per tenant `clientId` and `certificate` (thumbprint) of that tenant's own app. Tenants with empty values, missing or expired certificate are skipped.
 
 Modules: `Microsoft.Graph.Authentication`, `ExchangeOnlineManagement`, `MicrosoftTeams`, `ImportExcel`.
 
@@ -42,37 +41,36 @@ Manual (no read-only API): SharePoint unmanaged-device access and site-level sha
 
 ## Permissions
 
-Interactive sign-in with MFA, delegated permissions only. Effective rights = consented permissions ∩ role (Global Reader), so nothing can be changed. The script requests no Graph scopes: the list lives on the app registration in Entra.
+App-only sign-in, no prompts. Each tenant has its **own** app registration and certificate, so a leaked key affects one tenant only. All permissions are read-only.
 
-| What | Role | App approval |
+| What | Permission on the tenant's app | Role of the app |
 |---|---|---|
-| Graph | Global Reader | Our app "hochzwei Inventory", admin consent once per tenant |
-| Exchange + Defender | Global Reader | None (Microsoft first-party app) |
-| Purview | Global Reader | None |
-| Teams | Global Reader | None |
+| Graph | Graph application permissions (list in `CreateEntraApp.ps1`) | None needed |
+| Exchange + Defender | `Exchange.ManageAsApp` | Global Reader |
+| Purview | `Exchange.ManageAsApp` | Global Reader |
+| Teams | Graph application permissions | Global Reader (untested, may need Teams Administrator) |
 | DNS | None | None |
 
-### App registration (once, hochzwei tenant)
+### Setup per tenant
 
-- Supported account types: **Multitenant**.
-- Platform "Mobile and desktop applications", redirect URIs `ms-appx-web://microsoft.aad.brokerplugin/<clientId>` (WAM) and `http://localhost`. "Allow public client flows" stays **No** (no device code).
-- No certificates or secrets.
-- API permissions, Microsoft Graph, type **Delegated**: `Organization.Read.All`, `Directory.Read.All`, `Policy.Read.All`, `Policy.Read.DeviceConfiguration`, `RoleManagement.Read.Directory`, `AuditLog.Read.All`, `SecurityEvents.Read.All`, `DeviceManagementConfiguration.Read.All`, `DeviceManagementApps.Read.All`, `DeviceManagementManagedDevices.Read.All`, `DeviceManagementServiceConfig.Read.All`, `DeviceManagementScripts.Read.All`, `SharePointTenantSettings.Read.All`.
+```
+us:           ./CreateCertificate.ps1 -Tenant SyTech            ──► certs/SyTech.cer
+tenant admin: ./CreateEntraApp.ps1 -TenantId sytechschuler.onmicrosoft.com `
+                  -AppName 'hochzwei Inventory' -CertificatePath certs/SyTech.cer
+us:           clientId + certificate into tenants.json
+```
 
-A new permission needs admin consent again in every tenant.
+- `CreateCertificate.ps1`: private key non-exportable in `Cert:\CurrentUser\My` of the export machine, 6 months. Only the `.cer` (public key) leaves the machine.
+- `CreateEntraApp.ps1`: needs Global Admin, or Application Administrator + Privileged Role Administrator. Creates the single-tenant app, grants the permissions (admin consent) and assigns Global Reader. Checks all permission names first, creates nothing on error.
 
-### Per Schuler tenant (Global Admin)
+Whoever runs code as our user on the export machine has read access to every set-up tenant, without MFA or Conditional Access. Keep that machine clean, and remove apps and certificates when the project ends (or after a tenant is done):
 
-1. Invite our hochzwei account as guest, assign **Global Reader** (PIM-eligible is fine: activate before running).
-2. Admin consent: `https://login.microsoftonline.com/<tenant>.onmicrosoft.com/adminconsent?client_id=<clientId>`.
-3. Enterprise applications ► our app ► Properties: **Assignment required = Yes**, then assign only our guest account.
-4. Cross-tenant access settings ► hochzwei tenant ► Inbound ► Trust settings: trust MFA from Entra tenants.
-5. Conditional Access must not block our guest sign-in (compliant device, location). Possibly an exclusion.
+- Tenant: Entra ► App registrations ► "hochzwei Inventory" ► Delete.
+- Us: `Remove-Item Cert:\CurrentUser\My\<thumbprint>`.
 
-Open: Exchange and Purview PowerShell with a guest account is untested. Fallback is a member account in that tenant, set as `account` in `tenants.json`.
+Monitoring: Entra ► Sign-in logs ► Service principal sign-ins, filter on the app.
 
 Prerequisites besides roles:
 
 - PIM data needs Entra ID P2, MFA registration report needs P1/P2. Missing license shows up in `_errors.json`.
-- WAM windows may open behind the terminal.
 - SharePoint PowerShell is skipped on purpose: it needs SharePoint Administrator (write role).
